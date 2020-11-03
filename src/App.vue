@@ -1,12 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav id="nav" class="navbar navbar-light bg-light">
+      <loggedNavbarItems />
+      <unloggedNavbarItems />
+    </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+import loggedNavbarItems from './components/layouts/loggedNavbarItems';
+import unloggedNavbarItems from './components/layouts/unloggedNavbarItems';
+
+export default {
+  name: "App",
+
+  components: {
+    loggedNavbarItems,
+    unloggedNavbarItems
+  }
+}
+</script>
 
 <style>
 #app {
@@ -28,5 +42,9 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.navbar-item {
+  margin-left: 15px;
 }
 </style>
