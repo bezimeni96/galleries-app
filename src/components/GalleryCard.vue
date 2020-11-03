@@ -2,7 +2,8 @@
     <div class="card" style="width: 240px;">
         <img class="card-img-top" :src="gallery.images[0].url" :alt="gallery.title">
         <div class="card-body">
-            <h5 class="card-title">{{ gallery.title }}</h5>
+            <h5 class="card-title"><router-link :to="{ name:'single-gallery', params: {id: gallery.id} }">{{ gallery.title }}</router-link>
+                </h5>
             <p class="card-text">{{ gallery.author.first_name }} {{ gallery.author.last_name }}</p>
             <p class="card-text">{{ gallery.created_at }}</p>
         </div>

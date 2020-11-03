@@ -1,6 +1,9 @@
 export const mutations = {
     setGalleries(state, payload) {
-        console.log(payload)
         state.galleries = payload;
       },
+
+    setSingleGallery(state, payload) {
+        state.singleGallery = payload;
+    }
 }
