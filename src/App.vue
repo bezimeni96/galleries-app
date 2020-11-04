@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <nav id="nav" class="navbar navbar-light bg-light">
-      <loggedNavbarItems />
-      <unloggedNavbarItems />
+      <loggedNavbarItems v-if="token" />
+      <unloggedNavbarItems v-else />
     </nav>
     <router-view/>
   </div>
@@ -11,6 +11,7 @@
 <script>
 import loggedNavbarItems from './components/layouts/loggedNavbarItems';
 import unloggedNavbarItems from './components/layouts/unloggedNavbarItems';
+import { mapGetters } from 'vuex';
 
 export default {
   name: "App",
@@ -18,6 +19,12 @@ export default {
   components: {
     loggedNavbarItems,
     unloggedNavbarItems
+  },
+
+  computed: {
+    ...mapGetters([
+      'token'
+    ])
   }
 }
 </script>

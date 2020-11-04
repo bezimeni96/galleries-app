@@ -11,7 +11,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
@@ -30,22 +30,34 @@ const routes = [
   {
     path: '/authors/:id',
     name: 'authors-gallery',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/create',
     name: 'create-gallery',
-    component: CreateGallery
+    component: CreateGallery,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
+    meta: {
+      guest: true
+    }
   },
   {
     path: '/register',
     name: 'register',
-    component: Register
+    component: Register,
+    meta: {
+      guest: true
+    }
   }
 ]
 
@@ -54,5 +66,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = !!localStorage.getItem('token');
+  if (isAuthenticated && to.meta.guest) {
+    return next({ name: 'home' });
+  }
+  if (!isAuthenticated && to.meta.auth) {
+    return next({ name: 'login' });
+  }
+  return next();
+});
 
 export default router
