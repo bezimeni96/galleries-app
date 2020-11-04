@@ -1,4 +1,5 @@
 import { galleriesServices } from '../services/GalleriesServices';
+import { authService } from '../services/AuthServices';
 
 export const actions = {
     async fetchGalleries(state) {
@@ -18,5 +19,11 @@ export const actions = {
         const datas = error.response.data;
         return datas;
       }
+    },
+
+    async login(state, payload) {
+      const response = await authService.login(payload);
+      return response;
     }
+
 }

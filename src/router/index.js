@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SingleGallery from '../views/SingleGallery'
 import CreateGallery from '../views/CreateGallery'
+import Login from '../views/Login'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/create',
     name: 'create-gallery',
     component: CreateGallery
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ]
 

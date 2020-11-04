@@ -11,6 +11,9 @@ export const store = new Vuex.Store({
     state: {
         galleries: [],
         singleGallery: {},
+
+        token: '',
+        user: {},
     },
   
     getters,
