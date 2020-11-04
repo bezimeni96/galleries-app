@@ -1,7 +1,8 @@
 <template>
     <div>
         <h2>{{ singleGallery.title }}</h2>
-        <h5>Author: {{ singleGallery.author.first_name }} {{ singleGallery.author.last_name }}</h5>
+        <span>Author:</span>
+        <router-link :to="{ name: 'authors-gallery', params: { id: singleGallery.author.id }}"><h4>{{ singleGallery.author.first_name }} {{ singleGallery.author.last_name }}</h4></router-link>
         <p>Created: {{ singleGallery.created_at }}</p>
         <br>
         <p>{{ singleGallery.description }}</p>

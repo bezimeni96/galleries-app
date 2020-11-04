@@ -1,18 +1,27 @@
 <template>
-<div>
+  <div>
     <b-carousel
-      id="carousel-1"
-      :interval="4000"
+      id="carousel1"
       controls
       indicators
-      background="#ABABAB"
-      img-width="960"
+      :interval="4000"
+      img-width="1024"
       img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
     >
-      <b-carousel-slide v-for="image in images" :key="image.id" :img-src="image.url"></b-carousel-slide>
+      <div v-for="image in images" :key="image.id">
+        <a :href="image.url" target="_blank">
+          <b-carousel-slide>
+            <img
+              slot="img"
+              class="d-block img-fluid w-100"
+              :src="image.url"
+              alt="image slot"
+            >
+          </b-carousel-slide>
+        </a>
+      </div>
     </b-carousel>
-</div>
+  </div>
 </template>
 
 <script>

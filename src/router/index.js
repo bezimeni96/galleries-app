@@ -23,6 +23,11 @@ const routes = [
     path: '/galleries/:id',
     name: 'single-gallery',
     component: SingleGallery
+  },
+  {
+    path: '/authors/:id',
+    name: 'authors-gallery',
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
 
