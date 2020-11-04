@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import SingleGallery from '../views/SingleGallery'
 import CreateGallery from '../views/CreateGallery'
 import Login from '../views/Login'
+import Register from '../views/Register'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
   }
 ]
 

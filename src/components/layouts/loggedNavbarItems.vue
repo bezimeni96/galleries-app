@@ -3,7 +3,7 @@
         <router-link to="/" class="navbar-item">All Galleries</router-link>
         <router-link to="/my-galleries" class="navbar-item">My Galleries</router-link>
         <router-link to="/create" class="navbar-item">Create New Gallery</router-link>
-        <router-link to="/login" @click.native="logoutUser" class="navbar-item" >Logout</router-link>
+        <router-link to="/logout" @click.native="logoutUser" class="navbar-item" >Logout</router-link>
     </div>
 </template>
 
@@ -19,7 +19,6 @@ export default {
         ]),
 
         logoutUser() {
-            console.log('logout');
             localStorage.removeItem('token');
             this.resetTokenUser();
             this.$router.push('/login');

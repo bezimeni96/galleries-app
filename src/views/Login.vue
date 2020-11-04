@@ -41,10 +41,12 @@ export default {
     ...mapActions([
       'login'
     ]),
+
     ...mapMutations([
       'setUser',
       'setToken'
     ]),
+    
     async loginSubmit() {
       try {
         const response = await this.login(this.credentials);

@@ -24,6 +24,15 @@ export const actions = {
     async login(state, payload) {
       const response = await authService.login(payload);
       return response;
-    }
+    },
+
+    async registerUser(state, payload) {
+      try {
+        return await authService.register(payload);
+      } catch (error) {
+        const datas = error.response.data;
+        return datas;
+      }
+    },
 
 }
