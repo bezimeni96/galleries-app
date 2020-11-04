@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SingleGallery from '../views/SingleGallery'
+import CreateGallery from '../views/CreateGallery'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/authors/:id',
     name: 'authors-gallery',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/create',
+    name: 'create-gallery',
+    component: CreateGallery
   }
 ]
 

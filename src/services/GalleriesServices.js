@@ -7,7 +7,11 @@ export default class GalleriesServices extends AxiosService{
   }
 
   getGallery(id) {
-    return this.apiClient.get('/galleries/' + id);
+    return this.apiClient.get(`/galleries/${id}`);
+  }
+
+  addGallery(gallery) {
+    return this.apiClient.post('/galleries', gallery)
   }
 
 }
