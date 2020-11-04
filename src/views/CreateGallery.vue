@@ -32,11 +32,11 @@
           <div class="input-group">
             <input id="url" name="url" type="text" class="form-control here" v-model="gallery.images[index]" required>
             
-            <button class="btn btn-light" @click="deleteUrl(gallery.images[index])">x</button> 
+            <button class="btn btn-light" type="button" @click="deleteUrl(gallery.images[index])">x</button> 
 
-            <button class="btn btn-light" v-if="gallery.images[index] && index > 0" @click="moveUp(gallery.images[index])">up</button>
+            <button class="btn btn-light" type="button" v-if="gallery.images[index] && index > 0" @click="moveUp(gallery.images[index])">up</button>
 
-            <button class="btn btn-light" v-if="gallery.images[index] && index < gallery.images.length-1" @click="moveDown(gallery.images[index])">down</button>
+            <button class="btn btn-light" type="button" v-if="gallery.images[index] && index < gallery.images.length-1" @click="moveDown(gallery.images[index])">down</button>
           </div>
 
           <div class="input-group">
@@ -48,7 +48,7 @@
       <div class="form-group row">
         <label for="images" class="col-4 col-form-label"></label>
         <div class="col-8">
-          <button class="btn btn-light" @click="addUrl">Add more images</button>
+          <button class="btn btn-light" type="button" @click="addUrl">Add more images</button>
         </div>
       </div>
 
@@ -104,32 +104,24 @@ export default {
     },
 
     deleteUrl(image){
-      if (this.count > 1){
-        let currentIndex = this.gallery.images.indexOf(image);
-        this.gallery.images.splice(currentIndex, 1);
-        this.gallery.images.splice(image, 1);
+      if (this.count > 1) {
         this.count--;
+        const currentIndex = this.gallery.images.indexOf(image);
+        this.gallery.images.splice(currentIndex, 1);
       }
     },
 
     moveUp(image){
-      let currentIndex = this.gallery.images.indexOf(image);
-      let previousIndex = this.gallery.images.indexOf(image) - 1;
-      if (currentIndex !== 0 && this.count > 1) {
-        this.gallery.images.splice(currentIndex, 1, this.gallery.images[previousIndex]);
-        this.gallery.images.splice(previousIndex, 1, image);
-      } else if (previousIndex < 0) {
-        let lastIndex = this.gallery.images.length - 1;
-        this.gallery.images.splice(previousIndex, 1, this.gallery.images[lastIndex]);
+      const currentIndex = this.gallery.images.indexOf(image);
+      if (currentIndex) {
+        this.gallery.images.splice(currentIndex - 1, 0, this.gallery.images.splice(currentIndex, 1)[0]);
       }
     },
 
     moveDown(image){
-      let currentIndex = this.gallery.images.indexOf(image);
-      let nextIndex = this.gallery.images.indexOf(image) + 1;
-      if (currentIndex < this.gallery.images.length-1) {
-        this.gallery.images.splice(currentIndex, 1, this.gallery.images[nextIndex]);
-        this.gallery.images.splice(nextIndex, 1, image);
+      const currentIndex = this.gallery.images.indexOf(image);
+      if (currentIndex != this.count - 1) {
+        this.gallery.images.splice(currentIndex + 1, 0, this.gallery.images.splice(currentIndex, 1)[0]);
       }
     }
   },

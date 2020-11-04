@@ -13,7 +13,7 @@ export const actions = {
 
     async createGallery(state, gallery) {
       try {
-        await galleriesServices.addGallery(gallery);
+        return await galleriesServices.addGallery(gallery);
       } catch (error) {
         const datas = error.response.data;
         return datas;
