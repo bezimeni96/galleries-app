@@ -7,6 +7,8 @@ import Login from '../views/Login'
 import Register from '../views/Register'
 import AuthorGallery from '../views/AuthorGallery'
 
+import { store } from '../store/store'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -75,6 +77,11 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem('token');
+  if (isAuthenticated && !store.getters.user.length) {
+    store.dispatch('fetchUser').then( () => {
+      store.commit('setToken', localStorage.getItem('token'))
+    });
+  } 
   if (isAuthenticated && to.meta.guest) {
     return next({ name: 'home' });
   }

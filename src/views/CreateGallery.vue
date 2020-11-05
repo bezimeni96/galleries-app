@@ -91,7 +91,6 @@ export default {
     async onSubmit() {
       this.gallery.user_id = this.user.id;
       const response = await this.createGallery(this.gallery);
-      console.log({response})
       if (response.errors) {
         this.errors = response.errors;
       } else {

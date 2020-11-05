@@ -40,4 +40,9 @@ export const actions = {
       state.commit('setGalleries', data);
     },
 
+    async fetchUser(state) {
+      const { data } = await authService.getUser();
+      state.commit('setUser', data)
+    }
+
 }

@@ -11,6 +11,11 @@ export default class AuthService extends AxiosServices {
     return this.apiClient.post('/register', user);
   }
 
+  async getUser() {
+    const resonse = await this.apiClient.get('/user');
+    return resonse;
+  }
+
   
 }
 
