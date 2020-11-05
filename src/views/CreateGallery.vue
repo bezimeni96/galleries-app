@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "CreateGallery",
@@ -69,11 +69,18 @@ export default {
       gallery: {
         title: '',
         description: '',
-        images: []
+        images: [],
+        user_id: ''
       },
       count: 1,
       errors: []
     }
+  },
+
+  computed: {
+    ...mapGetters([
+      'user'
+    ])
   },
 
   methods: {
@@ -82,7 +89,9 @@ export default {
     ]),
 
     async onSubmit() {
+      this.gallery.user_id = this.user.id;
       const response = await this.createGallery(this.gallery);
+      console.log({response})
       if (response.errors) {
         this.errors = response.errors;
       } else {

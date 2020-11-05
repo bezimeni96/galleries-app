@@ -35,4 +35,9 @@ export const actions = {
       }
     },
 
+    async fetchAuthorGalleries(state, id) {
+      const { data } = await galleriesServices.getAuthors(id);
+      state.commit('setGalleries', data);
+    },
+
 }

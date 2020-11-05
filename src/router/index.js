@@ -5,6 +5,7 @@ import SingleGallery from '../views/SingleGallery'
 import CreateGallery from '../views/CreateGallery'
 import Login from '../views/Login'
 import Register from '../views/Register'
+import AuthorGallery from '../views/AuthorGallery'
 
 Vue.use(VueRouter)
 
@@ -26,14 +27,6 @@ const routes = [
     path: '/galleries/:id',
     name: 'single-gallery',
     component: SingleGallery
-  },
-  {
-    path: '/authors/:id',
-    name: 'authors-gallery',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    meta: {
-      auth: true
-    }
   },
   {
     path: '/create',
@@ -58,6 +51,11 @@ const routes = [
     meta: {
       guest: true
     }
+  },
+  {
+    path: '/authors/:id',
+    name: 'authors-gallery',
+    component: AuthorGallery
   }
 ]
 
