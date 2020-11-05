@@ -56,6 +56,14 @@ const routes = [
     path: '/authors/:id',
     name: 'authors-gallery',
     component: AuthorGallery
+  },
+  {
+    path: '/my-galleries',
+    name: 'my-galleries',
+    component: AuthorGallery,
+    meta: {
+      auth: true
+    }
   }
 ]
 

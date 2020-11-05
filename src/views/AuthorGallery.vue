@@ -18,7 +18,8 @@ export default {
 
   computed: {
       ...mapGetters([
-          'galleries'
+          'galleries',
+          'user'
       ])
   },
 
@@ -27,7 +28,12 @@ export default {
   },
 
   beforeRouteEnter(to, from, next) {
-      store.dispatch('fetchAuthorGalleries', to.params.id).then(() => next());
+      if (to.name === "my-galleries") {
+        const author = store.getters.user;
+        store.dispatch('fetchAuthorGalleries', author.id).then(() => next());
+      } else {
+        store.dispatch('fetchAuthorGalleries', to.params.id).then(() => next());
+      }
   }
 
   }
