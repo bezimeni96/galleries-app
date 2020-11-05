@@ -43,6 +43,10 @@ export const actions = {
     async fetchUser(state) {
       const { data } = await authService.getUser();
       state.commit('setUser', data)
+    },
+
+    async deleteGallery(state, id) {
+      return await galleriesServices.deleteGallery(id)
     }
 
 }

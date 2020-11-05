@@ -6,6 +6,7 @@ import CreateGallery from '../views/CreateGallery'
 import Login from '../views/Login'
 import Register from '../views/Register'
 import AuthorGallery from '../views/AuthorGallery'
+import EditGallery from '../views/EditGallery'
 
 import { store } from '../store/store'
 
@@ -70,7 +71,7 @@ const routes = [
   {
     path: '/edit-gallery',
     name: 'edit-gallery',
-    component: CreateGallery,
+    component: EditGallery,
     meta: {
       auth: true
     }

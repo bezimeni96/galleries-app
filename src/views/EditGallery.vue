@@ -30,7 +30,7 @@
         <label for="images" class="col-4 col-form-label">Image:</label>
         <div class="col-8">
           <div class="input-group">
-            <input id="url" name="url" type="text" class="form-control here" v-model="gallery.images[index]" required>
+            <input id="url" name="url" type="text" class="form-control here" v-model="gallery.images[index].url" required>
             
             <button class="btn btn-light" type="button" @click="deleteUrl(gallery.images[index])">x</button> 
 
@@ -52,13 +52,14 @@
         </div>
       </div>
 
-      <button class="btn btn-info btn-margin" type="submit">Add Gallery</button>
+      <button class="btn btn-info btn-margin" type="submit">Submit</button>
       <button class="btn btn-danger btn-margin" type="button" @click="cancle">Cancle</button>
     </form>
   </div>
 </template>
 
 <script>
+import { store } from '../store/store'
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -72,6 +73,9 @@ export default {
         images: [],
         user_id: ''
       },
+      imageItem: {
+        id: 0
+      },
       count: 1,
       errors: []
     }
@@ -79,18 +83,18 @@ export default {
 
   computed: {
     ...mapGetters([
-      'user'
+      'user',
+      'singleGallery',
     ])
   },
 
   methods: {
     ...mapActions([
-      'createGallery'
+      'editGallery'
     ]),
 
     async onSubmit() {
-      this.gallery.user_id = this.user.id;
-      const response = await this.createGallery(this.gallery);
+      const response = await this.editGallery(this.gallery);
       if (response.errors) {
         this.errors = response.errors;
       } else {
@@ -108,7 +112,10 @@ export default {
 
 
     addUrl(){
-      this.count++ 
+      this.count++
+      this.gallery.push( {
+          "url": ''
+      } ) 
     },
 
     deleteUrl(image){
@@ -134,6 +141,15 @@ export default {
     }
   },
 
+  created() {
+      this.gallery = {... this.singleGallery};
+      console.log(this.gallery.images)
+      this.count = this.gallery.images.length;
+  },
+
+  beforeRouteEnter(to, from, next) {
+    store.dispatch('fetchSingleGallery', to.params.id).then(() => next());
+  }
   
 }
 </script>

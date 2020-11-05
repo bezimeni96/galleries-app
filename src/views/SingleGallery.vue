@@ -2,6 +2,7 @@
     <div>
         <div v-if="user.id === singleGallery.author.id">
             <router-link :to="{ name: 'edit-gallery', params: { id: singleGallery.id }}">Edit gallery</router-link>
+            <button class="btn btn-danger" @click="deleteThisGallery">Delete galery</button>
         </div>
         <h2>{{ singleGallery.title }}</h2>
         <span>Author:</span>
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { store } from '../store/store';
 import CarouselImages from '../components/CarouselImages';
 
@@ -31,6 +32,16 @@ export default {
             'singleGallery',
             'user'
         ])
+    },
+
+    methods: {
+        ...mapActions([
+            'deleteGallery'
+        ]),
+
+        deleteThisGallery() {
+            this.deleteGallery(this.singleGallery.id).then(() => this.$router.path('/my-gallery')).catch( (error) => console.log({error}));
+        }
     },
 
     created() {
