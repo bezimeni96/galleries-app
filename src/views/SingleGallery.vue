@@ -40,7 +40,7 @@ export default {
         ]),
 
         deleteThisGallery() {
-            this.deleteGallery(this.singleGallery.id).then(() => this.$router.path('/my-gallery')).catch( (error) => console.log({error}));
+            this.deleteGallery(this.singleGallery.id).then(() => this.$router.push('/my-galleries')).catch( (error) => console.log({error}));
         }
     },
 

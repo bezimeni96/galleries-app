@@ -46,6 +46,7 @@ export const actions = {
     },
 
     async deleteGallery(state, id) {
+      console.log(id)
       return await galleriesServices.deleteGallery(id)
     }
 
