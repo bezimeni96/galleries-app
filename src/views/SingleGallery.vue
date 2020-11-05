@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div v-if="user.id === singleGallery.author.id">
+            <router-link :to="{ name: 'edit-gallery', params: { id: singleGallery.id }}">Edit gallery</router-link>
+        </div>
         <h2>{{ singleGallery.title }}</h2>
         <span>Author:</span>
         <router-link :to="{ name: 'authors-gallery', params: { id: singleGallery.author.id }}"><h4>{{ singleGallery.author.first_name }} {{ singleGallery.author.last_name }}</h4></router-link>
@@ -25,7 +28,8 @@ export default {
 
     computed: {
         ...mapGetters([
-            'singleGallery'
+            'singleGallery',
+            'user'
         ])
     },
 

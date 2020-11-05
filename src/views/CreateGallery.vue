@@ -52,13 +52,14 @@
         </div>
       </div>
 
-      <button class="btn btn-info btn-margin" type="submit">Add Gallery</button>
+      <button class="btn btn-info btn-margin" type="submit">Submit</button>
       <button class="btn btn-danger btn-margin" type="button" @click="cancle">Cancle</button>
     </form>
   </div>
 </template>
 
 <script>
+import { store } from '../store/store'
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -72,6 +73,9 @@ export default {
         images: [],
         user_id: ''
       },
+      imageItem: {
+        id: 0
+      },
       count: 1,
       errors: []
     }
@@ -79,18 +83,19 @@ export default {
 
   computed: {
     ...mapGetters([
-      'user'
+      'user',
+      'singleGallery',
     ])
   },
 
   methods: {
     ...mapActions([
-      'createGallery'
+      'createGallery',
+      'editGallery'
     ]),
 
     async onSubmit() {
-      this.gallery.user_id = this.user.id;
-      const response = await this.createGallery(this.gallery);
+      const response = ( this.$route.name === "edit-gallery" ? await this.editGallery(this.gallery) : await this.createGallery(this.gallery) );
       if (response.errors) {
         this.errors = response.errors;
       } else {
@@ -134,6 +139,28 @@ export default {
     }
   },
 
+  created() {
+    if (this.$route.name === 'edit-gallery') {
+      this.gallery = {... this.singleGallery};
+      this.gallery.images = [];
+      this.count = 0;
+      console.log(this.singleGallery.images)
+      this.singleGallery.images.forEach(image => {
+        console.log(image)
+        this.gallery.images.push(image.url)
+        this.count++
+      });
+    }
+  },
+
+  beforeRouteEnter(to, from, next) {
+      if (to.name === "edit-gallery") {
+        console.log(to.params)
+        store.dispatch('fetchSingleGallery', to.params.id).then(() => next());
+      } else {
+        next()
+      }
+  }
   
 }
 </script>

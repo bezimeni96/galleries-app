@@ -66,7 +66,15 @@ const routes = [
     meta: {
       auth: true
     }
-  }
+  },
+  {
+    path: '/edit-gallery',
+    name: 'edit-gallery',
+    component: CreateGallery,
+    meta: {
+      auth: true
+    }
+  },
 ]
 
 const router = new VueRouter({

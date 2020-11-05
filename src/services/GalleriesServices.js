@@ -18,6 +18,10 @@ export default class GalleriesServices extends AxiosService{
     return this.apiClient.get(`/authors/${id}`);
   }
 
+  editGallery(id) {
+    return this.apiClient.put(`/galleries/${id}`);
+  }
+
 }
 
 export const galleriesServices = new GalleriesServices()
