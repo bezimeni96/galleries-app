@@ -1,13 +1,19 @@
 <template>
-<div class="card-deck gallery-container">
-    <div v-for="gallery in galleries" :key="gallery.id" >
-        <gallery-card :gallery=gallery />        
+<div>
+    <search-galleries />
+    <div class="card-deck gallery-container">
+
+        <div v-for="gallery in galleries" :key="gallery.id" >
+            <gallery-card :gallery=gallery />        
+        </div>
     </div>
+
 </div>
 </template>
 
 <script>
 import GalleryCard from './GalleryCard';
+import SearchGalleries from './SearchGalleries'
 
 export default {
     name: "Galleries",
@@ -17,7 +23,8 @@ export default {
     },
 
     components: {
-        GalleryCard
+        GalleryCard,
+        SearchGalleries
     }
 }
 </script>
