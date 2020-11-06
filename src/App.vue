@@ -4,14 +4,14 @@
       <loggedNavbarItems v-if="token" />
       <unloggedNavbarItems v-else />
     </nav>
-    <router-view/>
+    <router-view v-if="gotUser"/>
   </div>
 </template>
 
 <script>
 import loggedNavbarItems from './components/layouts/loggedNavbarItems';
 import unloggedNavbarItems from './components/layouts/unloggedNavbarItems';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "App",
@@ -21,9 +21,30 @@ export default {
     unloggedNavbarItems
   },
 
+  data() {
+    return {
+      gotUser: false
+    }
+  },
+
+  created() {
+    if (!this.token) {
+      this.gotUser = true;
+    }
+    this.fetchUser().then(()=> {
+      this.gotUser = true;
+    })
+  },
+
   computed: {
     ...mapGetters([
       'token'
+    ])
+  },
+
+  methods: {
+    ...mapActions([
+      'fetchUser'
     ])
   }
 }

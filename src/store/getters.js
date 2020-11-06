@@ -6,4 +6,10 @@ export const getters = {
     user: ({ user }) => user,
 
     token: ({ token }) => token,
+
+    numberOfGalleries: ({ numberOfGalleries }) => numberOfGalleries,
+
+    page: ({ page }) => page,
+
+    searchText: ({ searchText }) => searchText,
 }

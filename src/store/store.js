@@ -11,8 +11,12 @@ export const store = new Vuex.Store({
     state: {
         galleries: [],
         singleGallery: {},
+        numberOfGalleries: 0,
 
-        token: '',
+        searchText: '',
+        page: 0,
+
+        token: localStorage.getItem('token'),
         user: {},
     },
   

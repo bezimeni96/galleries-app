@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
 import GalleryCard from './GalleryCard';
 import SearchGalleries from './SearchGalleries'
 
@@ -29,22 +28,8 @@ export default {
     },
 
     methods: {
-        ...mapActions([
-            'fetchGalleries',
-            'fetchAuthorGalleries'
-        ]),
-
         search(word) {
-            if (this.$route.name === 'home') {
-                this.fetchGalleries(word);
-            } else if (this.$route.name === 'authors-gallery') {
-                const data = {
-                    'id': this.galleries[0].author.id,
-                    'word': word
-                };
-                console.log(data);
-                this.fetchAuthorGalleries(data)
-            }
+            this.$emit('handleSearch', word)
         }
     }
 }

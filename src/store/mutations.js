@@ -30,5 +30,21 @@ export const mutations = {
     deleteComment(state, payload) {
       const indexOfComment = state.singleGallery.comments.indexOf(payload);
       state.singleGallery.comments.splice(indexOfComment, 1);
+    },
+
+    setNumberOfGalleries(state, payload) {
+      state.numberOfGalleries = payload;
+    },
+
+    pushGalleries(state, payload) {
+      state.galleries = state.galleries.concat(payload);
+    },
+
+    setSearchText(state, payload) {
+      state.searchText = payload;
+    },
+
+    setPage(state, payload) {
+      state.page = payload;
     }
 }

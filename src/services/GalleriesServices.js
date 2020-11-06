@@ -2,8 +2,8 @@ import AxiosService from './AxiosServices';
 
 export default class GalleriesServices extends AxiosService{
 
-  getAll(word = '') {
-    return this.apiClient.get('/galleries', { params: { word }});
+  getAll(parametars) {
+    return this.apiClient.get('/galleries', { params:  parametars  });
   }
 
   getGallery(id) {
