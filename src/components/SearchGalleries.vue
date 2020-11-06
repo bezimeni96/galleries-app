@@ -1,12 +1,11 @@
 <template>
 <div class="md-form mt-0 wrap">
   <input class="form-control" type="text" placeholder="Search" aria-label="Search" v-model="searchInput">
-  <button class="btn btn-outline-info" @click="search">Search</button>
+  <button class="btn btn-outline-info" @click="filterGalleries">Search</button>
 </div>
 </template>
 
 <script>
-// import { mapMutations } from 'vuex';
 export default {
   name: "SearchGalleries",
   data() {
@@ -15,9 +14,8 @@ export default {
     }
   },
   methods: {
-    search() {
-      // console.log(this.$route)
-      this.$router.push(this.$route.path + "?search=" + this.searchInput);
+    filterGalleries() {
+      this.$emit('search', this.searchInput)
     }
   },
 }

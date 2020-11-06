@@ -2,8 +2,8 @@ import AxiosService from './AxiosServices';
 
 export default class GalleriesServices extends AxiosService{
 
-  getAll() {
-    return this.apiClient.get('/galleries');
+  getAll(word = '') {
+    return this.apiClient.get('/galleries', { params: { word }});
   }
 
   getGallery(id) {
@@ -14,8 +14,8 @@ export default class GalleriesServices extends AxiosService{
     return this.apiClient.post('/galleries', gallery)
   }
 
-  getAuthors(id) {
-    return this.apiClient.get(`/authors/${id}`);
+  getAuthors(id, word = '') {
+    return this.apiClient.get(`/authors/${id}`, { params: { word }});
   }
 
   editGallery(gallery) {

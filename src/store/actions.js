@@ -2,8 +2,8 @@ import { galleriesServices } from '../services/GalleriesServices';
 import { authService } from '../services/AuthServices';
 
 export const actions = {
-    async fetchGalleries(state) {
-      const { data } = await galleriesServices.getAll();
+    async fetchGalleries(state, word = '') {
+      const { data } = await galleriesServices.getAll(word);
       state.commit('setGalleries', data);
     },
 
@@ -35,9 +35,15 @@ export const actions = {
       }
     },
 
-    async fetchAuthorGalleries(state, id) {
-      const { data } = await galleriesServices.getAuthors(id);
-      state.commit('setGalleries', data);
+    async fetchAuthorGalleries(state, payload) {
+      // console.log(payload.id, payload.word)
+      if (!payload.word) {
+        const { data } = await galleriesServices.getAuthors(payload);
+        state.commit('setGalleries', data);
+      } else {
+        const { data } = await galleriesServices.getAuthors(payload.id, payload.word);
+        state.commit('setGalleries', data);
+      }
     },
 
     async fetchUser(state) {
