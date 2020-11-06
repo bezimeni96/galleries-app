@@ -12,6 +12,8 @@
         <p>{{ singleGallery.description }}</p>
         <br>
         <carousel-images :images="singleGallery.images" />
+        <hr>
+        <comments :comments="singleGallery.comments" @onClick="addComment" />
     </div>
 </template>
 
@@ -19,12 +21,14 @@
 import { mapGetters, mapActions } from 'vuex';
 import { store } from '../store/store';
 import CarouselImages from '../components/CarouselImages';
+import Comments from '../components/Comments'
 
 export default {
     name: "SingleGallery",
 
     components: {
-        CarouselImages
+        CarouselImages,
+        Comments
     },
 
     computed: {
@@ -36,11 +40,19 @@ export default {
 
     methods: {
         ...mapActions([
-            'deleteGallery'
+            'deleteGallery',
+            'createComment'
         ]),
 
         deleteThisGallery() {
-            this.deleteGallery(this.singleGallery.id).then(() => this.$router.push('/my-galleries')).catch( (error) => console.log({error}));
+            if (confirm('Do you want to delete this gallery?')) {
+                this.deleteGallery(this.singleGallery.id).then(() => this.$router.push('/my-galleries')).catch( (error) => console.log({error}));
+            }
+        },
+
+        addComment(comment) {
+            comment.gallery_id = this.singleGallery.id;
+            this.createComment(comment);
         }
     },
 

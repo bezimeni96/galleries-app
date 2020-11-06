@@ -26,6 +26,13 @@ export default class GalleriesServices extends AxiosService{
     return this.apiClient.delete(`/galleries/${id}`)
   }
 
+  addComment(comment) {
+    return this.apiClient.post(`/galleries/${comment.gallery_id}/comments`, comment);
+  }
+
+  deleteComment(id) {
+    return this.apiClient.delete(`/comments/${id}`);
+  }
 }
 
 export const galleriesServices = new GalleriesServices()

@@ -46,8 +46,19 @@ export const actions = {
     },
 
     async deleteGallery(state, id) {
-      console.log(id)
       return await galleriesServices.deleteGallery(id)
+    },
+
+    async createComment(state, comment) {
+      const { data } = await galleriesServices.addComment(comment);
+      state.commit('addComment', data);
+      return data;
+    },
+
+    async deleteComment(state, id) {
+      const { data } = await galleriesServices.deleteComment(id);
+      state.commit('deleteComment', data);
+      return data;
     }
 
 }
