@@ -74,7 +74,7 @@ export default {
         user_id: ''
       },
       imageItem: {
-        id: 0
+        url: ''
       },
       count: 1,
       errors: []
@@ -113,8 +113,8 @@ export default {
 
     addUrl(){
       this.count++
-      this.gallery.push( {
-          "url": ''
+      this.gallery.images.push( {
+        url: ''
       } ) 
     },
 

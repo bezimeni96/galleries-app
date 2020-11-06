@@ -16,6 +16,9 @@ export default class AuthService extends AxiosServices {
     return resonse;
   }
 
+  async logout() {
+    return await this.apiClient.post('/logout'); 
+  }
   
 }
 

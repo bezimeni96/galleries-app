@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
     name: "LoggedUser",
@@ -17,8 +17,12 @@ export default {
         ...mapMutations([
         'resetTokenUser'
         ]),
+        ...mapActions([
+            'logout'
+        ]),
 
         logoutUser() {
+            this.logout();
             localStorage.removeItem('token');
             this.resetTokenUser();
             this.$router.push('/login');

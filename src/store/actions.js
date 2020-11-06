@@ -78,6 +78,9 @@ export const actions = {
       const { data } = await galleriesServices.deleteComment(id);
       state.commit('deleteComment', data);
       return data;
-    }
+    },
 
+    logout() {
+      authService.logout();
+    }
 }

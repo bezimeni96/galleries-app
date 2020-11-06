@@ -1,11 +1,18 @@
 <template>
 <div>
-    <search-galleries  @search="search" />
-    <div class="card-deck gallery-container">
+    <div v-if="galleries.length">
+        <search-galleries  @search="search" />
+        <div class="card-deck gallery-container">
 
-        <div v-for="gallery in galleries" :key="gallery.id" >
-            <gallery-card :gallery=gallery />        
+            <div v-for="gallery in galleries" :key="gallery.id" >
+                <gallery-card :gallery=gallery />        
+            </div>
         </div>
+    </div>
+    <div v-else class="alert alert-danger" role="alert">
+        <p>Soory!</p>
+        <br>
+        <p>There is not available gallery. :(</p>
     </div>
 
 </div>
