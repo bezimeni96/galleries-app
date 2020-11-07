@@ -34,7 +34,6 @@ export default {
     this.fetchUser().then(()=> {
       this.gotUser = true;
     })
-    console.log('cr')
   },
 
   computed: {

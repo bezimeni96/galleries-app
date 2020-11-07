@@ -7,7 +7,7 @@
         <h2>{{ singleGallery.title }}</h2>
         <span>Author:</span>
         <router-link :to="{ name: 'authors-gallery', params: { id: singleGallery.author.id }}"><h4>{{ singleGallery.author.first_name }} {{ singleGallery.author.last_name }}</h4></router-link>
-        <p>Created: {{ singleGallery.created_at }}</p>
+        <p>Created at: {{ singleGallery.created_at | formatDate}}</p>
         <br>
         <p>{{ singleGallery.description }}</p>
         <br>
@@ -22,6 +22,7 @@ import { mapGetters, mapActions } from 'vuex';
 import { store } from '../store/store';
 import CarouselImages from '../components/CarouselImages';
 import Comments from '../components/Comments'
+import { DateMixin } from '@/mixins';
 
 export default {
     name: "SingleGallery",
@@ -30,6 +31,8 @@ export default {
         CarouselImages,
         Comments
     },
+
+    mixins: [ DateMixin ],
 
     computed: {
         ...mapGetters([

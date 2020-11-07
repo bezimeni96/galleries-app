@@ -29,7 +29,6 @@ export default {
   created() {
     if (this.$route.name === "my-galleries") {
         const author = store.getters.user;
-        console.log('mc')
         store.dispatch('fetchAuthorGalleries', author.id).then(this.galleries);
       } else {
       this.galleries;
@@ -38,7 +37,6 @@ export default {
   beforeRouteEnter(to, from, next) {
       if (to.name === "my-galleries") {
         const author = store.getters.user;
-        console.log('bf')
         if (author) {
           store.dispatch('fetchAuthorGalleries', author.id).then(() => next());
         } else {
