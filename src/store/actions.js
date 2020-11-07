@@ -42,15 +42,15 @@ export const actions = {
       }
     },
 
-    async fetchAuthorGalleries(state, payload) {
+    async fetchAuthorGalleries(state, id) {
       // console.log(payload.id, payload.word)
-      if (!payload.word) {
-        const { data } = await galleriesServices.getAuthors(payload);
+      // if (!payload.word) {
+        const { data } = await galleriesServices.getAuthors(id);
         state.commit('setGalleries', data);
-      } else {
-        const { data } = await galleriesServices.getAuthors(payload.id, payload.word);
-        state.commit('setGalleries', data);
-      }
+      // } else {
+      //   const { data } = await galleriesServices.getAuthors(payload.id, payload.word);
+      //   state.commit('setGalleries', data);
+      // }
     },
 
     // async fetchAuthorMoreGalleries(state, payload) {
@@ -82,5 +82,10 @@ export const actions = {
 
     logout() {
       authService.logout();
+    },
+
+    async editGallery(state, gallery) {
+      const { data } = await galleriesServices.editGallery(gallery);
+      return data;
     }
 }

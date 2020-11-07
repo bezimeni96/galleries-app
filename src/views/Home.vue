@@ -43,7 +43,7 @@ export default {
 
     search(word) {
       this.setSearchText(word);
-      this.setPage = 0;
+      this.setPage(0);
       const data = {
         word: this.searchText,
         skip: this.page,

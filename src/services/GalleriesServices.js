@@ -14,8 +14,8 @@ export default class GalleriesServices extends AxiosService{
     return this.apiClient.post('/galleries', gallery)
   }
 
-  getAuthors(id, word = '') {
-    return this.apiClient.get(`/authors/${id}`, { params: { word }});
+  getAuthors(id) {
+    return this.apiClient.get(`/authors/${id}`);
   }
 
   editGallery(gallery) {
